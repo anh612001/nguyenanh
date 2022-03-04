@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::Get('Search',[App\Http\Controllers\SearchController::class, 'index'])->name('search');;
+//Route::post('Search/name', [App\Http\Controllers\SearchController::class,'getSearchAjax'])
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

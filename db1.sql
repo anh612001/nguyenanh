@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 02, 2022 lúc 11:18 AM
+-- Thời gian đã tạo: Th3 04, 2022 lúc 10:32 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -111,7 +111,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Anh', 'nguyen612001@gmail.com', NULL, '$2y$10$orLyEUZ2iRNIAP6fQVDiwuuvdPIMoHcGZxaHLZl8DxD8k0cHvX5i2', NULL, '2022-03-02 02:59:52', '2022-03-02 02:59:52');
+(1, 'Anh', 'nguyen612001@gmail.com', NULL, '$2y$10$orLyEUZ2iRNIAP6fQVDiwuuvdPIMoHcGZxaHLZl8DxD8k0cHvX5i2', NULL, '2022-03-02 02:59:52', '2022-03-02 02:59:52'),
+(2, 'hoa', 'hoa43@gmail.com', NULL, '$2y$10$4nuKIZ.ntDoqzyut6yh.ouiNyd9rqUTlC7qb7hb6Eq9zwtgNvJ0f6', NULL, '2022-03-02 21:53:38', '2022-03-02 21:53:38'),
+(3, 'đức', 'duc123@gmail.com', NULL, '$2y$10$rx2QQDITt6hQxZZcW82mvev1eUEJhgJ8.2CUvRgr9uZyfG8bH2a5O', NULL, '2022-03-04 02:30:02', '2022-03-04 02:30:02'),
+(4, 'Vương', 'vuong97@gmail.com', NULL, '$2y$10$HLR.kVNz7sA6BvMetHtMX.Un24Akxm1OncLFsmcvTutsM7K/vbSlq', NULL, '2022-03-04 02:30:47', '2022-03-04 02:30:47');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -177,7 +180,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
