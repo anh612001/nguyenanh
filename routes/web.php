@@ -19,6 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::Get('Search',[App\Http\Controllers\SearchController::class, 'index'])->name('search');;
-//Route::post('Search/name', [App\Http\Controllers\SearchController::class,'getSearchAjax'])
+Route::Get('Search/',[App\Http\Controllers\SearchController::class, 'index'])->name('search');
+Route::Get('detail/{ID}',[App\Http\Controllers\DetailController::class, 'show'])->name('detail');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::Get('Search/', function(Illuminate\Http\Request $request){
+//     var_dump($request->all());
+// });
+//Route::post('Search/name', [App\Http\Controllers\SearchController::class,'getSearchAjax']);

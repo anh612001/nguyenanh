@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+
+use App\Models\User;
 class SearchController extends Controller
 {
     //
     function index(){
-         $key= isset($_GET['search']) ? $_GET['search'] : '';
-         if(!empty($key)){
-            $user=DB::select("SELECT * FROM users where name like '%".$key."%' ");
+         
+         if(isset($_GET['search'])){
+            $key=$_GET['search'];
+            $user=User::where('name','LIKE',"%{$key}%")->get();
          }
-        else $user=DB::select("SELECT * FROM users");
+       else $user='';
         
         return view('Search',['user'=>$user]);
     }

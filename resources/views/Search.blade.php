@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tìm kiếm</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+<title>Tìm kiếm</title>
+@extends('layout')
 Hello1
 
 <div class="container">
@@ -16,7 +7,7 @@ Hello1
 
       <form action="" method="get">
 			    <div class="input-group">
-			      <input type="text" class="form-control" id="search" placeholder="Search..." name="search" value="<?php echo (isset($_GET['search'])) ? $_GET['search']: ''; ?>">
+			      <input type="text" class="form-control" id="search" placeholder="Search..." name="search" value="{{(isset($_GET['search'])) ? $_GET['search']: ''}}">
 			      <div class="input-group-btn">
 			        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			        <div id="nameList"><br>
@@ -27,31 +18,24 @@ Hello1
     </div>
 </div>     <br/><br/>
 <div class="container-fluid">
-  <?php
-  if(isset($_GET['search']) && $_GET['search']!=''){
-    ?>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Tên</th>
-        <th>Tùy chọn</th>
-      </tr>
-    </thead>
-    <tbody>
-        @foreach ($user as $item)
+  @if(!empty($user))
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td>{{$item->name}}</td>
-          <td><button>Kết bạn</button></td>
+          <th>Tên</th>
+          <th>Tùy chọn</th>
         </tr>
-        @endforeach
-    </tbody>
-    <?php
-  }
-  ?>
-
-
-    
-  </table>
+      </thead>
+      <tbody>
+          @foreach ($user as $item)
+          <tr>
+            <td><a href="detail/{{$item->id}}">{{$item->name}}</td>
+            <td><button>Kết bạn</button></td>
+          </tr>
+          @endforeach
+      </tbody> 
+    </table>
+  @endif
 </div>
 
 	
