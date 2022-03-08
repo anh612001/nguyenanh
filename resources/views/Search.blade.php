@@ -42,29 +42,29 @@ Hello1
 </body>
 </html>
 <script>
- //  $(document).ready(function(){
+  $(document).ready(function(){
 
- //   $('#search').keyup(function(){ 
- //    var query = $(this).val(); 
- //    if(query != '') 
- //    {
- //     var _token = $('input[name="_token"]').val(); 
- //     $.ajax({
- //      url:"{{ route('search') }}",
- //      method:"POST", // phương thức gửi dữ liệu.
- //      data:{query:query, _token:_token},
- //      success:function(data){ //dữ liệu nhận về
- //       $('#nameList').fadeIn();  
- //       $('#nameList').html(data); 
- //     }
- //   });
- //   }
- // });
+   $('#search').keyup(function(){ 
+    var query = $(this).val(); 
+    if(query != '') 
+    {
+     var _token = $('input[name="_token"]').val(); 
+     $.ajax({
+      url:"{{ route('search') }}",
+      method:"POST", // phương thức gửi dữ liệu.
+      data:{query:query, _token:_token},
+      success:function(data){ //dữ liệu nhận về
+       $('#nameList').fadeIn();  
+       $('#nameList').html(data); 
+     }
+   });
+   }
+ });
 
- //   $(document).on('click', 'li', function(){  
- //    $('#search').val($(this).text());  
- //    $('#nameList').fadeOut();  
- //  });  
+   $(document).on('click', 'li', function(){  
+    $('#search').val($(this).text());  
+    $('#nameList').fadeOut();  
+  });  
 
- // });
+ });
 </script>

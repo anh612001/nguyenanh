@@ -9,21 +9,27 @@ use App\Models\User;
 class SearchController extends Controller
 {
     //
-    function index(){
-         
-         if(isset($_GET['search'])){
-            $key=$_GET['search'];
+
+    function index(Request $request){
+        if($request->has('search')){
+            $key=$request->input('search');
             $user=User::where('name','LIKE',"%{$key}%")->get();
-         }
-       else $user='';
-        
+        }
+        else $user='';
+
         return view('Search',['user'=>$user]);
     }
+    /**
+     * Store a new user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     // function getSearchAjax(Request $request)
     // {
-    //     if($request->get('query'))
+    //     if($request->get('search'))
     //     {
-    //         $query = $request->get('query');
+    //         $query = $request->get('search');
     //         $data = DB::table('users')
     //         ->where('name', 'LIKE', "%{$query}%")
     //         ->get();
@@ -31,7 +37,7 @@ class SearchController extends Controller
     //         foreach($data as $row)
     //         {
     //            $output .= '
-    //            <li><a href="data/'. $row->id .'">'.$row->name.'</a></li>
+    //            <li><a href="detail/'. $row->id .'">'.$row->name.'</a></li>
     //            ';
     //        }
     //        $output .= '</ul>';
