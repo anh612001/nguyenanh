@@ -1,42 +1,25 @@
-<title>Tìm kiếm</title>
-@extends('layout')
-Hello1
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-<div class="container">
-    <div class="row justify-content-center">
-
-      <form action="" method="get">
-			    <div class="input-group">
-			      <input type="text" class="form-control" id="search" placeholder="Search..." name="search" value="{{(isset($_GET['search'])) ? $_GET['search']: ''}}">
-			      <div class="input-group-btn">
-			        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-			        <div id="nameList"><br>
-			      </div>
-			    </div>
-			</form>
-
+<body>
+  <div class="container box">
+   <h3 align="center">Tim kiem</h3><br />
+   
+   <div class="form-group">
+    <input type="text" name="search" id="search" class="form-control input-lg" placeholder="Enter Name" />
+    <div id="nameList">
     </div>
-</div>     <br/><br/>
-<div class="container-fluid">
-  @if(!empty($user))
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Tên</th>
-          <th>Tùy chọn</th>
-        </tr>
-      </thead>
-      <tbody>
-          @foreach ($user as $item)
-          <tr>
-            <td><a href="detail/{{$item->id}}">{{$item->name}}</td>
-            <td><button>Kết bạn</button></td>
-          </tr>
-          @endforeach
-      </tbody> 
-    </table>
-  @endif
-</div>
+   </div>
+   {{ csrf_field() }}
+  </div>
 
 	
 </body>
@@ -51,9 +34,9 @@ Hello1
      var _token = $('input[name="_token"]').val(); 
      $.ajax({
       url:"{{ route('search') }}",
-      method:"POST", // phương thức gửi dữ liệu.
+      method:"POST", 
       data:{query:query, _token:_token},
-      success:function(data){ //dữ liệu nhận về
+      success:function(data){ 
        $('#nameList').fadeIn();  
        $('#nameList').html(data); 
      }

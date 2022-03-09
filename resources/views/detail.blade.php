@@ -7,6 +7,7 @@
 <h2>{{$detail->name}}</h2>
 <p>{{$detail->email}}</p>
 <div>Giới thiệu</div>
+<div><button>Ket ban</button></div>
 </div>
 </body>
 </html>
