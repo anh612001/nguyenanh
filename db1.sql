@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th3 04, 2022 lúc 10:32 AM
+-- Thời gian đã tạo: Th3 10, 2022 lúc 11:37 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -40,6 +40,29 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `friends`
+--
+
+CREATE TABLE `friends` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `friend_id` bigint(20) NOT NULL,
+  `relation` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `friends`
+--
+
+INSERT INTO `friends` (`id`, `user_id`, `friend_id`, `relation`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 0, NULL, NULL),
+(2, 1, 4, 0, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `migrations`
 --
 
@@ -57,7 +80,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2022_03_10_021653_create__friend_table', 2);
 
 -- --------------------------------------------------------
 
@@ -114,7 +138,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (1, 'Anh', 'nguyen612001@gmail.com', NULL, '$2y$10$orLyEUZ2iRNIAP6fQVDiwuuvdPIMoHcGZxaHLZl8DxD8k0cHvX5i2', NULL, '2022-03-02 02:59:52', '2022-03-02 02:59:52'),
 (2, 'hoa', 'hoa43@gmail.com', NULL, '$2y$10$4nuKIZ.ntDoqzyut6yh.ouiNyd9rqUTlC7qb7hb6Eq9zwtgNvJ0f6', NULL, '2022-03-02 21:53:38', '2022-03-02 21:53:38'),
 (3, 'đức', 'duc123@gmail.com', NULL, '$2y$10$rx2QQDITt6hQxZZcW82mvev1eUEJhgJ8.2CUvRgr9uZyfG8bH2a5O', NULL, '2022-03-04 02:30:02', '2022-03-04 02:30:02'),
-(4, 'Vương', 'vuong97@gmail.com', NULL, '$2y$10$HLR.kVNz7sA6BvMetHtMX.Un24Akxm1OncLFsmcvTutsM7K/vbSlq', NULL, '2022-03-04 02:30:47', '2022-03-04 02:30:47');
+(4, 'Vương', 'vuong97@gmail.com', NULL, '$2y$10$HLR.kVNz7sA6BvMetHtMX.Un24Akxm1OncLFsmcvTutsM7K/vbSlq', NULL, '2022-03-04 02:30:47', '2022-03-04 02:30:47'),
+(5, 'Nguyen Bang', 'bang632013@gmail.com', NULL, '$2y$10$uamMui30FPjV9o0kDOt7S.7hZSSsxCTvzn.D8M/v0ezwWDFSZdGKa', NULL, '2022-03-09 01:24:27', '2022-03-09 01:24:27'),
+(6, 'Ha Minh Duc', 'hd344@gmail.com', NULL, '$2y$10$7hyEf3WZMQUXNvkp3ognN.IjtECAbY6t/UdF9fZFa05yYupC/BpQS', NULL, '2022-03-09 01:25:16', '2022-03-09 01:25:16'),
+(7, 'Dao Tra My', 'my45@gmail.com', NULL, '$2y$10$jlpO0qMmljtBMijBGHRgoOmjMkuYwOJ1IJiYh.GhifGUfCwJbVdFC', NULL, '2022-03-09 01:25:53', '2022-03-09 01:25:53'),
+(8, 'Ngo Hai yen', 'yen54@gmail.com', NULL, '$2y$10$Xyy3J6EPnuKh8UaRPyTeZOoAUb.XkFd4ceY6pXq4ARcZpZqpXy8.G', NULL, '2022-03-09 01:26:19', '2022-03-09 01:26:19');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -126,6 +154,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Chỉ mục cho bảng `friends`
+--
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `migrations`
@@ -165,10 +199,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT cho bảng `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -180,7 +220,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
