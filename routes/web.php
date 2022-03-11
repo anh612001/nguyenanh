@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::Get('/Search',[App\Http\Controllers\SearchController::class, 'index']);
-Route::Get('detail/{ID}',[App\Http\Controllers\DetailController::class, 'show'])->name('detail');
+Route::Get('detail/{ID}',[App\Http\Controllers\DetailController::class, 'index'])->name('detail');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-// Route::Get('Search/', function(Illuminate\Http\Request $request){
-//     var_dump($request->all());
-// });
-Route::POST('/Search/hi', [App\Http\Controllers\SearchController::class,'fetch'])->name('search');
+Route::POST('/Search', [App\Http\Controllers\SearchController::class,'fetch'])->name('search');
+Route::Get('detail/',[App\Http\Controllers\DetailController::class, 'addfriend'])->name('addfriend');
