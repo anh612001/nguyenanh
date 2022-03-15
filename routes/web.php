@@ -27,3 +27,4 @@ Route::Get('detail/{ID}',[App\Http\Controllers\DetailController::class, 'index']
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::POST('/Search', [App\Http\Controllers\SearchController::class,'fetch'])->name('search');
 Route::Get('detail/',[App\Http\Controllers\DetailController::class, 'addfriend'])->name('addfriend');
+

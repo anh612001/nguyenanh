@@ -22,7 +22,7 @@ class SearchController extends Controller
             foreach($data as $row)
             {
                $output .= '
-               <li><a href="/detail/'. $row->id .'">'.$row->name.'</a></li>
+               <li><a href=' .route("detail",["ID"=>$row->id]).' >'.$row->name.'</a></li>
                ';
            }
            $output .= '</ul>';

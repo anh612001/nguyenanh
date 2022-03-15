@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-
+@extends('layouts.app')
+@section('Title','Search')
+@section('content')
 <body>
   <div class="container box">
    <h3 align="center">Tim kiem</h3><br />
@@ -22,8 +14,7 @@
   </div>
 
 	
-</body>
-</html>
+
 <script>
   $(document).ready(function(){
 
@@ -51,3 +42,4 @@
 
  });
 </script>
+@endsection
