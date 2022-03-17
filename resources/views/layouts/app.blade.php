@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    
+    @yield("header")
 </head>
 <body>
     <div id="app">
