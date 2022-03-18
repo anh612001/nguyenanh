@@ -32,87 +32,66 @@
         </div>
 
         <div class="col-md-8" id="messages">
-        	<div class="message-wraper">
-        		<ul class="messages">
-					<li class="message clearfix">
-						<div class="sent">
-							<p>hoeeel   sd d </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-					<li class="message clearfix">
-						<div class="received">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-
-					<li class="message clearfix">
-						<div class="sent">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-					<li class="message clearfix">
-						<div class="received">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-
-					<li class="message clearfix">
-						<div class="sent">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-					<li class="message clearfix">
-						<div class="received">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-
-					<li class="message clearfix">
-						<div class="sent">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-					<li class="message clearfix">
-						<div class="received">
-							<p>hoeeeld </p>
-							<p class="date">16 March 2022</p>
-						</div>
-					</li>
-				</ul>
-        	</div>
-
-        	<div class="input-text">
-        		<input type="text" name="message" id='chat' class="submit">
-        	</div>
+       
+        	
         </div>
 {{ csrf_field() }}
     </div>
 </div>
 <script>
-	var _token = $('input[name="_token"]').val();
-	var received_id='';
-	var my_id="{{ Auth::id() }}";
-	$(document).ready(function(){
-		$('.user').click(function(){
-			$('.user').removeClass('active');
-			$(this).addClass('active');
-			received_id=$(this).attr('id');
-			$.ajax({
-				method: "post",
-				url:"{{ route('getmessage') }}",
-				data:{id:received_id, _token:_token},
-				success: function(data){
-					alert(data);
-				}
-			});
-		});
-	});
+    var _token = $('input[name="_token"]').val();
+    var received_id='';
+    var my_id="{{ Auth::id() }}";
+    $(document).ready(function(){
+    	// Enable pusher logging - don't include this in production
+	    Pusher.logToConsole = true;
+
+	    var pusher = new Pusher('efbaeaa2af757aa92e74', {
+	      cluster: 'ap1'
+	    });
+
+	    var channel = pusher.subscribe('my-channel');
+	    channel.bind('my-event', function(data) {
+	      alert(JSON.stringify(data));
+	    });
+
+
+        $('.user').click(function(){
+            $('.user').removeClass('active');
+            $(this).addClass('active');
+            received_id=$(this).attr('id');
+            $.ajax({
+                method: "post",
+                url:"{{ route('getmessage') }}",
+                data:{id:received_id, _token:_token},
+                success: function(data){
+                    $('#messages').html(data);
+                }
+            });
+        });
+
+        $(document).on('keyup','.input-text input',function(e){
+            var message=$(this).val();
+            if(message!='' && e.keyCode==13 && received_id!=''){
+                $(this).val('');
+                
+                $.ajax({
+                	method:"Post",
+                	url:" {{ route('message') }}",
+                	data:{received_id:received_id,message:message,_token:_token},
+                	success: function(data){
+                		alert(data);
+                	},
+                	error: function(jqXHR,status,err){
+
+                	},
+                	complete:function(){
+
+                	}
+                })
+            }
+        });
+    });
+
 </script>
 @endsection

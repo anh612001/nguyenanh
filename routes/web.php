@@ -29,4 +29,6 @@ Route::POST('/Search', [App\Http\Controllers\SearchController::class,'fetch'])->
 Route::Get('detail/',[App\Http\Controllers\DetailController::class, 'addfriend'])->name('addfriend');
 Route::Get('chat/',[App\Http\Controllers\ChatController::class,'index']);
 Route::Post('chat',[App\Http\Controllers\ChatController::class,'getmessage'])->name('getmessage');
+Route::Post('chat/1',[App\Http\Controllers\ChatController::class,'sendMessage'])->name('message');
+//Route::Get('chat/{id}',[App\Http\Controllers\ChatController::class,'test']);
 
